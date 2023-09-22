@@ -4,8 +4,8 @@ public class SupermercatoProva {
 
     public static void main(String[] args) {
 
-        Prodotto p1 = new Prodotto(10.0, 22.0, 1.5, 0.2, "Pane", "1234567890120");
-        Prodotto p2 = new Prodotto(14.0, 12.0, 6.5, 2.2, "Acqua", "173562936298");
+        Prodotto p1 = new Prodotto(10.0, 22.0, 1.5, 0.2, "Pane", "7888971920089");
+        Prodotto p2 = new Prodotto(14.0, 12.0, 6.5, 2.2, "Acqua", "0320894613378");
         Prodotto[] pr = new Prodotto[2];
         pr[0] = p1;
         pr[1] = p2;
@@ -20,6 +20,7 @@ public class SupermercatoProva {
         System.out.println("Il valore di tutta la merce è di: " + s.valoreMerce());
         System.out.println("Il peso minore è di: " + s.pesoMinore());
         System.out.println("Pordotti con il valore non ivato superiore al valore medio sono: " + s.merciSopraLaMedia());
+        System.out.println(p2.controlloCodice());
         System.out.println(s.stampa());
     }
 

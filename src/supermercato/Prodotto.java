@@ -18,6 +18,15 @@ public class Prodotto {
         this.codiceABarre = codiceABarre;
     }
 
+    public Prodotto(Prodotto p) {
+        this.descrizione = p.descrizione;
+        this.codiceABarre = p.codiceABarre;
+        this.iva = p.iva;
+        this.peso = p.peso;
+        this.prezzo = p.prezzo;
+        this.tara = p.tara;
+    }
+
     public String getCodiceABarre() {
         return codiceABarre;
     }
@@ -76,23 +85,27 @@ public class Prodotto {
 
     public boolean controlloCodice() {
         boolean controllo;
+        int cifraContollo = 0;
         if (codiceABarre.length() != 13) {
             controllo = false;
         } else {
             int somma = 0;
             for (int i = 0; i < codiceABarre.length() - 1; i += 2) {
-                int cifra = Character.getNumericValue(codiceABarre.charAt(i));
-                somma += cifra * 3;
+                int cifra = codiceABarre.charAt(i) - '0';
+                somma = somma + (cifra * 3);
             }
 
             for (int i = 1; i < codiceABarre.length() - 1; i += 2) {
-                int cifra = Character.getNumericValue(codiceABarre.charAt(i));
-                somma += cifra;
+                int cifra = codiceABarre.charAt(i) - '0';
+                somma = somma + cifra;
             }
+            System.out.println(somma);
 
-            int cifra = somma % 10;
-            int cifraContollo = Character.getNumericValue(codiceABarre.charAt(12));
-            if (cifra == cifraContollo) {
+            int c = somma % 10;
+            System.out.println("\n" + c);
+            cifraContollo = Character.getNumericValue(codiceABarre.charAt(12));
+            System.out.println(cifraContollo);
+            if (c == cifraContollo) {
                 controllo = true;
             } else {
                 controllo = false;

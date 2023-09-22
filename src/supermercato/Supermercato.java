@@ -5,8 +5,10 @@ public class Supermercato {
     private String nome;
     private String indirizzo;
     private Prodotto[] prodotto;
+    private int dimL;
 
     public Supermercato(Prodotto[] prod, String nome, String indirizzo) {
+        this.dimL = prodotto.length;
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.prodotto = copia(prod);
@@ -21,7 +23,7 @@ public class Supermercato {
     }
 
     public void addProdotto(Prodotto p) {
-        Prodotto[] copiaProdotti = new Prodotto[prodotto.length + 1];
+        Prodotto[] copiaProdotti = new Prodotto[dimL + 1];
         for (int i = 0; i < copiaProdotti.length; i++) {
             if (i < prodotto.length) {
                 copiaProdotti[i] = prodotto[i];
@@ -31,6 +33,13 @@ public class Supermercato {
         }
         prodotto = copiaProdotti;
     }
+    
+    /*public void addProd(Prodotto p){
+        if(dimL >= this.prodotto.lenght)
+            prodotto = resize((prodotto.length*20)/100);
+        prodotto[dimL] - pAdd;
+        dimL++;
+    }*/
 
     public void addProdotto2(double prezzo, double iva, double peso, double tara, String descrizione, String codiceABarre) {
         Prodotto[] copiaProdotti = new Prodotto[prodotto.length + 1];
@@ -44,6 +53,12 @@ public class Supermercato {
             }
         }
         prodotto = copiaProdotti;
+    }
+    
+    public void rimuoviProdotto(Prodotto pElliminare){
+        Prodotto[] copiaProdotti = new Prodotto[prodotto.length - 1];
+        
+        
     }
 
     public String prezzoAlto() {
@@ -84,7 +99,7 @@ public class Supermercato {
         for (int i = 0; i < prodotto.length; i++) {
             media += prodotto[i].getPrezzo();
         }
-        media /= 2;
+        media /= prodotto.length;
 
         for (int i = 0; i < prodotto.length; i++) {
             if (prodotto[i].getPrezzo() > media) {

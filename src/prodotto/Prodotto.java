@@ -74,31 +74,32 @@ public class Prodotto {
         return peso + tara;
     }
 
-    public boolean controlloCodice() {
+    public int controlloCodice() {
         boolean controllo;
+        int cifraContollo = 0;
         if (codiceABarre.length() != 13) {
             controllo = false;
         } else {
             int somma = 0;
-            for (int i = 0; i < codiceABarre.length()-1; i += 2) {
-                int cifra = Character.getNumericValue(codiceABarre.charAt(i));
-                somma += cifra * 3;
-            }
-            
-            for(int i = 1; i < codiceABarre.length()-1; i+=2){
+            for (int i = 1; i < codiceABarre.length()-1; i += 2) {
                 int cifra = Character.getNumericValue(codiceABarre.charAt(i));
                 somma += cifra;
             }
             
+            for(int i = 0; i < codiceABarre.length()-1; i+=2){
+                int cifra = Character.getNumericValue(codiceABarre.charAt(i));
+                somma += cifra *3;
+            }
+            
             int cifra = somma % 10;
-            int cifraContollo = Character.getNumericValue(codiceABarre.charAt(12));
+            cifraContollo = Character.getNumericValue(codiceABarre.charAt(12));
             if (cifra == cifraContollo) {
                 controllo = true;
             } else {
                 controllo = false;
             }
         }
-        return controllo;
+        return cifraContollo;
     }
 
     public String stampa() {
